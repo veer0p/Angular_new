@@ -1,0 +1,55 @@
+<!-- <div *ngIf="isVisible" class="squre"></div> -->
+<div [ngClass]="isRound ? 'round' : 'square'"></div>
+<br>
+<!-- <button (click)="notvisible()">Hide</button>
+<button (click)="visible()">Show</button> -->
+
+<button (click)="round()">Round</button>
+<button (click)="squre()">Squre</button>
+<br><br>
+<button (click)="toggle()">Toggle</button>
+<br><br>
+<button [routerLink]="['/add-emp']">Go to Add Employee (Using Property binding)</button>
+
+<!-- <input type="number" name="" id=""> -->
+
+<br><br>
+
+<h2>list of cities:</h2>
+<ul>
+    <li *ngFor="let city of cities">{{city}}</li>
+</ul>
+
+<br><br>
+
+<table style="width: 50%;">
+    <tbody>
+        <tr>
+            <td>Id</td>
+            <td>Name</td>
+            <td>Age</td>
+            <td>City</td>
+            <td>Status</td>
+            <td>Progress</td>
+        </tr>
+        <br>
+        <tr *ngFor="let data of tableData">
+            <td>{{data.id}}</td>
+            <td>{{data.name}}</td>
+            <td>{{data.age}}</td>
+            <td>{{data.city}}</td>
+            <td><span *ngIf="data.isActive">Active</span>
+                <span *ngIf="!data.isActive">Not-Active</span>
+            </td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" [ngStyle]="{'width': data.percentage + '%'}"
+                        aria-valuemin="0" aria-valuemax="100">
+                        <span>{{data.percentage}}</span>
+                    </div>
+
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>

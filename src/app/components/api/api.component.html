@@ -1,0 +1,33 @@
+<button (click)="getData()">Call API</button>
+
+<body>
+    <div class="container mt-5">
+        <h2 class="mb-4">User Details</h2>
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Username</th>
+                    <th>City</th>
+                    <th>Company</th>
+                    <th>Email</th>
+                    <th>Phone No</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of userList">
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.address.city }}</td>
+                    <td>{{ user.company.name }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.phone }}</td>
+                    <!-- <td>{{ user.website }}</td> -->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>

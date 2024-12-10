@@ -1,0 +1,88 @@
+<div class="container mt-5">
+    <h2>Student Form</h2>
+    <form #studentForm="ngForm" id="studentForm">
+        <!-- First Name -->
+        <div class="mb-3">
+            <label for="firstName" class="form-label">First Name</label>
+            <input type="text" [(ngModel)]="studentObj.firstName" #fName="ngModel" class="form-control" id="firstName"
+                name="firstName" placeholder="Enter first name" required minlength="3" pattern="[a-zA-Z]*" />
+        </div>
+        <div class="text-danger">
+            <span *ngIf="fName.errors?.['required'] && fName.touched">First Name is required</span>
+            <span *ngIf="fName.errors?.['minlength'] && fName.touched">Min length is 3</span>
+            <span *ngIf="fName.errors?.['pattern'] && fName.touched">Only alphabets are allowed</span>
+        </div>
+
+        <!-- Last Name -->
+        <div class="mb-3">
+            <label for="lastName" class="form-label">Last Name</label>
+            <input type="text" [(ngModel)]="studentObj.lastName" #lName="ngModel" class="form-control" id="lastName"
+                name="lastName" placeholder="Enter last name" required pattern="[a-zA-Z]*" />
+        </div>
+        <div class="text-danger">
+            <span *ngIf="lName.errors?.['required'] && lName.touched">Last Name is required</span>
+            <span *ngIf="lName.errors?.['pattern'] && lName.touched">Only alphabets are allowed</span>
+        </div>
+
+        <!-- Username -->
+        <div class="mb-3">
+            <label for="userName" class="form-label">Username</label>
+            <input type="text" [(ngModel)]="studentObj.userName" #uName="ngModel" class="form-control" id="userName"
+                name="userName" placeholder="Enter username" required />
+        </div>
+        <div class="text-danger">
+            <span *ngIf="uName.errors?.['required'] && uName.touched">Username is required</span>
+        </div>
+
+        <!-- City -->
+        <div class="mb-3">
+            <label for="city" class="form-label">City</label>
+            <input type="text" [(ngModel)]="studentObj.city" #city="ngModel" class="form-control" id="city" name="city"
+                placeholder="Enter city" required />
+        </div>
+        <div class="text-danger">
+            <span *ngIf="city.errors?.['required'] && city.touched">City is required</span>
+        </div>
+
+        <!-- State -->
+        <div class="mb-3">
+            <label for="state" class="form-label">State</label>
+            <input type="text" [(ngModel)]="studentObj.state" #state="ngModel" class="form-control" id="state"
+                name="state" placeholder="Enter state" required />
+        </div>
+        <div class="text-danger">
+            <span *ngIf="state.errors?.['required'] && state.touched">State is required</span>
+        </div>
+
+        <!-- Zip Code -->
+        <div class="mb-3">
+            <label for="zipCode" class="form-label">Zip Code</label>
+            <input type="text" [(ngModel)]="studentObj.zipCode" #zip="ngModel" class="form-control" id="zipCode"
+                name="zipCode" placeholder="Enter zip code" required pattern="[0-9]*" minlength="5" maxlength="6" />
+        </div>
+        <div class="text-danger">
+            <span *ngIf="zip.errors?.['required'] && zip.touched">Zip Code is required</span>
+            <span *ngIf="zip.errors?.['pattern'] && zip.touched">Only numbers are allowed</span>
+            <span *ngIf="zip.errors?.['minlength'] && zip.touched">Minimum 5 digits required</span>
+            <span *ngIf="zip.errors?.['maxlength'] && zip.touched">Maximum 6 digits allowed</span>
+        </div>
+
+        <!-- Accept Terms -->
+        <div class="form-check mb-3">
+            <input [(ngModel)]="studentObj.isAcceptTerms" #terms="ngModel" class="form-check-input" type="checkbox"
+                id="isAcceptTerms" name="isAcceptTerms" required />
+            <label class="form-check-label" for="isAcceptTerms">
+                Accept Terms and Conditions
+            </label>
+        </div>
+        <div class="text-danger">
+            <span *ngIf="terms.errors?.['required'] && terms.touched">You must accept the terms</span>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary" [disabled]="!studentForm.form.valid" (click)="onSubmit()">
+            Submit
+        </button>
+    </form>
+    <pre>{{ studentObj | json }}</pre>
+</div>
